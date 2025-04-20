@@ -1,0 +1,114 @@
+.inquiry-container {
+  background-color: #e2851e;
+  margin: 50px auto;
+  text-align: center;
+  padding: 60px 40px;
+  border-radius: 5px;
+  max-width: 1000px;
+  width: 90%;
+}
+
+.inquiry-title {
+  font-size: 26px;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.inquiry-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  width: 100%;
+  max-width: 900px;
+}
+
+.input-field {
+  flex: 1;
+  min-width: 220px;
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: white;
+  color: black !important; /* Added this line */
+}
+
+.message-box {
+  width: 100%;
+  max-width: 900px;
+  height: 150px;
+  margin-top: 15px;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+  background-color: white;
+  color: black !important; /* Added this line */
+}
+
+.submit-btn {
+  background-color: black;
+  color: white;
+  font-size: 18px;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+.submit-btn:hover {
+  background-color: #333;
+}
+
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .inquiry-container {
+    padding: 50px 30px;
+  }
+
+  .input-group {
+    gap: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .input-group {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .input-field,
+  .message-box {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .inquiry-container {
+    padding: 40px 20px;
+  }
+
+  .inquiry-title {
+    font-size: 22px;
+  }
+
+  .input-field,
+  .message-box {
+    font-size: 14px;
+  }
+
+  .submit-btn {
+    font-size: 16px;
+    padding: 10px 25px;
+  }
+}

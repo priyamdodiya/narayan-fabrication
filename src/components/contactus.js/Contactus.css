@@ -1,0 +1,49 @@
+.contactus {
+    height: 50vh;
+    width: 100%;
+    background-image: url('../../assets/telephone.jpg'); 
+    background-size: cover;
+    background-position: center;
+    display: flex;  
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.contactus h1 {
+  padding-top: 90px;
+    color: white;
+    margin-bottom: 10px;
+    font-size: 40px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.contactus ul {
+    display: flex;
+    gap: 10px;
+    list-style: none;
+    padding: 0;
+    color: white;
+}
+
+.contactus ul li {
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.contactus ul li:first-child:hover  {
+    color: #E88D18;
+}
+
+@media (max-width: 768px) {
+    .contactus h1 {
+      font-size: 27px;
+    }
+  }
+  @media (max-width: 480px) {
+    .contactus h1  {
+      font-size: 23px;
+    }
+  }
