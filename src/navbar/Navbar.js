@@ -7,16 +7,21 @@ import logo from "../assets/logo.png";
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
-    setIsDropdownOpen(false); // close dropdown when menu toggles
+    setIsDropdownOpen(false);
+    setIsPopupOpen(false);
   };
 
   const toggleDropdown = () => {
     if (window.innerWidth <= 768) {
-      // only toggle dropdown on mobile
-      setIsDropdownOpen(!isDropdownOpen);
+      if (isMenuOpen) {
+        setIsPopupOpen(true);
+      } else {
+        setIsDropdownOpen(!isDropdownOpen);
+      }
     }
   };
 
@@ -24,9 +29,11 @@ function Navbar() {
     const handleClickOutside = (event) => {
       if (
         !event.target.closest(".dropdown-menu") &&
-        !event.target.closest(".dropdown-toggle")
+        !event.target.closest(".dropdown-toggle") &&
+        !event.target.closest(".popup-modal")
       ) {
         setIsDropdownOpen(false);
+        setIsPopupOpen(false);
       }
     };
     document.addEventListener("click", handleClickOutside);
@@ -34,45 +41,109 @@ function Navbar() {
   }, []);
 
   return (
-    <nav className="navbar">
-      <div className="navbar-logo">
-        <Link to="/">
-          <img src={logo} alt="Logo" />
-        </Link>
-      </div>
+    <>
+      <nav className="navbar">
+        <div className="navbar-logo">
+          <Link to="/">
+            <img src={logo} alt="Logo" />
+          </Link>
+        </div>
 
-      <ul className={`navbar-menu ${isMenuOpen ? "active" : ""}`}>
-        <li><Link to="/" onClick={() => setIsMenuOpen(false)}>Home</Link></li>
+        <a href="tel:7284013879"> 
+        <span class="call-now-number">72840-13879</span>
+        </a>
 
-        <li className={`dropdown ${isDropdownOpen ? "dropdown-open" : ""}`}>
-          <button className="dropdown-toggle" onClick={toggleDropdown}>
-            Services
-          </button>
-          <ul className="dropdown-menu">
-            {servicesData.map((service) => (
-              <li key={service.id}>
-                <Link to={`/service/${service.id}`} onClick={() => setIsMenuOpen(false)}>
-                  {service.title}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </li>
 
-        <li><Link to="/about" onClick={() => setIsMenuOpen(false)}>About</Link></li>
-        <li><Link to="/contactus" onClick={() => setIsMenuOpen(false)}>Contact</Link></li>
-      </ul>
+        <ul className={`navbar-menu ${isMenuOpen ? "active" : ""}`}>
+          <li>
+            <Link to="/" onClick={() => setIsMenuOpen(false)}>
+              Home
+            </Link>
+          </li>
 
-      <div
-        className={`navbar-toggle ${isMenuOpen ? "open" : ""}`}
-        onClick={toggleMenu}
-      >
-        <div className="bar"></div>
-        <div className="bar"></div>
-        <div className="bar"></div>
-      </div>
-    </nav>
+          <li className="dropdown">
+            <button
+              className="dropdown-toggle"
+              onClick={() => {
+                if (window.innerWidth <= 768 && isMenuOpen) {
+                  setIsPopupOpen(true);
+                } else {
+                  setIsDropdownOpen(!isDropdownOpen);
+                }
+              }}
+            >
+              Services
+            </button>
+
+            {window.innerWidth > 768 && (
+              <ul className="dropdown-menu">
+                {servicesData.map((service) => (
+                  <li key={service.id}>
+                    <Link
+                      to={`/service/${service.id}`}
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {service.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+
+          <li>
+            <Link to="/about" onClick={() => setIsMenuOpen(false)}>
+              About
+            </Link>
+          </li>
+          <li>
+            <Link to="/contactus" onClick={() => setIsMenuOpen(false)}>
+              Contact
+            </Link>
+          </li>
+        </ul>
+
+        <div
+          className={`navbar-toggle ${isMenuOpen ? "open" : ""}`}
+          onClick={toggleMenu}
+        >
+          <div className="bar"></div>
+          <div className="bar"></div>
+          <div className="bar"></div>
+        </div>
+      </nav>
+
+      {isPopupOpen && (
+        <div className="popup-overlay" onClick={() => setIsPopupOpen(false)}>
+          <div
+            className="popup-modal"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h2>Our Services</h2>
+            <ul className="popup-services-list">
+              {servicesData.map((service) => (
+                <li key={service.id}>
+                  <Link
+                    to={`/service/${service.id}`}
+                    onClick={() => {
+                      setIsPopupOpen(false);
+                      setIsMenuOpen(false);
+                    }}
+                  >
+                    {service.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <button className="popup-close-btn" onClick={() => setIsPopupOpen(false)}>
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 
 export default Navbar;
+

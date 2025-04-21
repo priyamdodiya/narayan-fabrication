@@ -1,22 +1,78 @@
-import React from "react";
+import React, { useRef } from "react";
+import emailjs from "@emailjs/browser";
 import "./Getintouch.css";
 
 const Getintouch = () => {
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm(
+        "service_8r037cq",      // Replace with your EmailJS service ID
+        "template_8fvmfkf",     // Replace with your EmailJS template ID
+        form.current,
+        "ZZiiYHeqt_vwKchPL"     // Replace with your EmailJS public key
+      )
+      .then(
+        (result) => {
+          alert("Message sent successfully!");
+          console.log(result.text);
+          form.current.reset();
+        },
+        (error) => {
+          alert("Something went wrong.");
+          console.log(error.text);
+        }
+      );
+  };
+
   return (
     <div className="contact-section">
       <h2 className="contact-title">GET IN TOUCH</h2>
       <div className="contact-wrapper">
         <div className="contact-form-container">
-          <form className="contact-form">
+          <form className="contact-form" ref={form} onSubmit={sendEmail}>
             <div className="form-group">
-              <input type="text" placeholder="Your Name" className="form-input" />
-              <select className="form-input">
-                <option>Your Interest</option>
+              <input
+                type="text"
+                name="user_name"
+                placeholder="Your Name"
+                className="form-input"
+                required
+              />
+              <select
+                name="user_interest"
+                className="form-input"
+                required
+              >
+                <option value="">Your Interest</option>
+                <option value="Web Development">Web Development</option>
+                <option value="App Development">App Development</option>
+                <option value="UI/UX Design">UI/UX Design</option>
               </select>
-              <input type="email" placeholder="Email Id" className="form-input" />
-              <input type="text" placeholder="Mobile No." className="form-input" />
+              <input
+                type="email"
+                name="user_email"
+                placeholder="Email Id"
+                className="form-input"
+                required
+              />
+              <input
+                type="text"
+                name="user_mobile"
+                placeholder="Mobile No."
+                className="form-input"
+                required
+              />
             </div>
-            <textarea placeholder="Your Message" className="form-textarea"></textarea>
+            <textarea
+              name="user_message"
+              placeholder="Your Message"
+              className="form-textarea"
+              required
+            ></textarea>
             <button type="submit" className="form-submit">SUBMIT</button>
           </form>
         </div>
