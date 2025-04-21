@@ -11,7 +11,7 @@ const Contact = () => {
       <div className="footer-content">
         <div className="footer-section">
           <h3>CONTACT US</h3>
-          <p style={{color:"white"}}><MapPin className="icon" /> <strong style={{color:"white"}}>Location:</strong> 1/3 Chhipa Bakhal, Indore, MP 452002</p>
+          <p style={{color:"white"}}><MapPin className="icon" /> <strong style={{color:"white"}}>Location:</strong>8 Riverview Appartment modi mahollo AK Road, surat</p>
           <a href="tel:7284013879">
           <p style={{color:"white"}}><Phone className="icon" /> <strong style={{color:"white"}}>Call Us Now:</strong>72840-13879</p>
           </a>

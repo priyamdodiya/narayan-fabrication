@@ -23,7 +23,7 @@ const Bgimages = () => {
   return (
     <div className="bgimage">
       <img src={bgChange} alt="background" />
-      <h1>NARAYAN FABRICATION & QUALITY IRON & STEEL FABRICATION WORKS
+      <h1>NARAYAN STEEL & QUALITY IRON & STEEL FABRICATION WORKS
       <br/>Since 2020</h1>
     </div>
   );

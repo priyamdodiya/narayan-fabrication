@@ -97,6 +97,11 @@ function Navbar() {
             </Link>
           </li>
           <li>
+            <Link to="/images" onClick={() => setIsMenuOpen(false)}>
+              Images
+            </Link>
+          </li>
+          <li>
             <Link to="/contactus" onClick={() => setIsMenuOpen(false)}>
               Contact
             </Link>
@@ -146,4 +151,3 @@ function Navbar() {
 }
 
 export default Navbar;
-

@@ -1,0 +1,44 @@
+.images-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 16px;
+  height: calc(90vh - 90px);
+  padding: 10px;
+  position: relative;
+  top: 90px;
+  overflow-y: auto; /* scroll if too many images */
+  background-color: #f9f9f9;
+}
+
+/* Make images square and responsive */
+.work-image {
+  width: 100%;
+  aspect-ratio: 1 / 1; /* Ensures height equals width */
+  object-fit: cover; /* Crop images nicely */
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect for interactivity */
+.work-image:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  z-index: 10;
+  position: relative;
+}
+
+/* Optional: add a subtle focus effect for accessibility */
+.work-image:focus {
+  outline: 3px solid #007BFF;
+  outline-offset: 2px;
+}
+
+/* Responsive text or container adjustments if needed */
+@media (max-width: 600px) {
+  .images-container {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 12px;
+  }
+}

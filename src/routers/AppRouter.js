@@ -4,12 +4,14 @@ import Home from "../components/home/Home";
 import About from "../components/about/About";
 import Contactus from "../components/contactus.js/Contactus";
 import ServiceDetail from "../navbar/servicesdata/Servicesdetail";
+import Workimages from "../components/workimages/Workimages";
 
 const AppRouter = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/about" element={<About />} />
+      <Route path="/images" element={<Workimages />} />
       <Route path="/contactus" element={<Contactus />} />
       <Route path="/service/:id" element={<ServiceDetail />} />
     </Routes>
