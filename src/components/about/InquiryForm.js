@@ -65,9 +65,11 @@ const InquiryForm = () => {
               required
             >
               <option value="">Your Interest</option>
-              <option value="Web Development">Web Development</option>
-              <option value="App Development">App Development</option>
-              <option value="UI/UX Design">UI/UX Design</option>
+              <option value="Web Development">Iron Gate</option>
+              <option value="App Development">Staircase Railing</option>
+              <option value="UI/UX Design">Roofing Shed</option>
+              <option value="UI/UX Design">Iron Grill</option>
+              <option value="UI/UX Design">Custom Fabrication</option>
             </select>
           </div>
           <textarea
